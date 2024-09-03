@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.time.LocalDate;
@@ -32,7 +33,5 @@ public class Thesis {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @OneToOne
-    @JoinColumn(name = "thesis_application_id", nullable = false)
-    private ThesisApplication thesisApplication;
+    private String filePath;
 }

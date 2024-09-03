@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Edit Students</title>
+    <style>
+        .student-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .student-info {
+            flex-grow: 1;
+        }
+        .edit-button {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Students</h1>
+
+<div th:each="student : ${student}" class="student-item">
+    <div class="student-info">
+        <strong>ID:</strong> <span th:text="${student.id}-1"></span><br>
+        <strong>Name:</strong> <span th:text="${student.name}"></span><br>
+        <strong>Faculty Number:</strong> <span th:text="${student.facultyNumber}"></span>
+    </div>
+    <div>
+        <a th:href="@{/submitThesis(studentId=${student.id}-1)}">Submit Thesis</a>
+    </div>
+    <div class="edit-button">
+        <a th:href="@{/edit/{id}(id=${student.id}-1)}">Edit</a>
+    </div>
+</div>
+</body>
+</html>

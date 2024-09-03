@@ -21,6 +21,26 @@ public class StudentServiceImpl implements StudentService {
         return students.stream().map((this::mapToStudentDto)).collect(Collectors.toList());
     }
 
+    @Override
+    public void createStudent(StudentDto studentDto) {
+        Student student = mapToStudent(studentDto);
+        studentRepository.save(student);
+    }
+
+    @Override
+    public void editStudent(StudentDto studentDto, int id) {
+        Student student = mapToStudent(studentDto);
+        studentRepository.save(student);
+    }
+
+    private Student mapToStudent(StudentDto studentDto) {
+        Student student = new Student();
+        student.setId(studentDto.getId());
+        student.setName(studentDto.getName());
+        student.setFacultyNumber(studentDto.getFacultyNumber());
+        return student;
+    }
+
     private StudentDto mapToStudentDto(Student student) {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(student.getId());
