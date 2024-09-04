@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Submit Thesis</title>
+</head>
+<body>
+<h1>Submit Thesis</h1>
+
+<form th:action="@{/submitThesis(studentId=${student.id})}" th:object="${thesis}" method="post" enctype="multipart/form-data">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" th:field="*{title}" required />
+  </div>
+  <div>
+    <label for="content">Content:</label>
+    <textarea id="content" th:field="*{content}" required></textarea>
+  </div>
+  <div>
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" name="file" required />
+  </div>
+  <button type="submit">Submit Thesis</button>
+</form>
+
+</body>
+</html>
