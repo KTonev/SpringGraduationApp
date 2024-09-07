@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 public class ThesisApplicationDto {
-    private int id;
+    private long id;
     private String topic;
     private String purpose;
     private String tasks;
     private String technologies;
     private Student student;
     private Teacher supervisor;
-    private Boolean isApproved;
+    private boolean isApproved;
 }

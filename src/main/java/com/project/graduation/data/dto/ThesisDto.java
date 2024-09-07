@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Data
 public class ThesisDto {
-    private int id;
+    private long id;
     private String title;
     private String content;
     private LocalDate uploadDate;

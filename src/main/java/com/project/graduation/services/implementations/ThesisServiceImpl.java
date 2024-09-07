@@ -27,8 +27,8 @@ public class ThesisServiceImpl implements ThesisService {
     private FileService fileService;
 
     @Override
-    public void saveThesis(ThesisDto thesisDto, int studentId, MultipartFile file) {
-        Student student = studentRepository.findById((long) studentId)
+    public void saveThesis(ThesisDto thesisDto, long studentId, MultipartFile file) {
+        Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
 
         Thesis thesis = new Thesis();

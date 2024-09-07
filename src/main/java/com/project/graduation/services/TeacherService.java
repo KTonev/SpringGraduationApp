@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface TeacherService {
     List<TeacherDto> getAllTeachers();
+
+    TeacherDto getTeacherById(long id);
+
+    void createTeacher(TeacherDto teacherDto);
 }

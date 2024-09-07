@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Menu Teachers</title>
+  <style>
+    .teacher-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .teacher-info {
+        flex-grow: 1;
+    }
+    .edit-button {
+        margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1>Menu Teachers</h1>
+
+<div th:each="teacher : ${teacher}" class="teacher-item">
+  <div class="teacher-info">
+    <strong>ID:</strong> <span th:text="${teacher.id}-1"></span><br>
+    <strong>Name:</strong> <span th:text="${teacher.name}"></span><br>
+    <strong>Position:</strong> <span th:text="${teacher.position}"></span>
+  </div>
+  <div class="submit-thesis-button">
+    <a th:href="@{/submitThesisApplication(teacherId=${teacher.id})}">Submit Thesis Application</a>
+  </div>
+  <div class="edit-button">
+    <a th:href="@{/editTeacher/{id}(id=${teacher.id})}">Edit</a>
+  </div>
+</div>
+</body>
+</html>

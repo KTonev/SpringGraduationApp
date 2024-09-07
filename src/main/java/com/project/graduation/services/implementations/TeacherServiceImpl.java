@@ -21,6 +21,27 @@ public class TeacherServiceImpl implements TeacherService {
         return teachers.stream().map((this::mapToTeacherDto)).collect(Collectors.toList());
     }
 
+    @Override
+    public TeacherDto getTeacherById(long id) {
+        return teacherRepository.findById(id)
+                .map(this::mapToTeacherDto)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid teacher Id:" + id));
+    }
+
+    @Override
+    public void createTeacher(TeacherDto teacherDto) {
+        Teacher teacher = mapToTeacher(teacherDto);
+        teacherRepository.save(teacher);
+    }
+
+    private Teacher mapToTeacher(TeacherDto teacherDto) {
+        Teacher teacher = new Teacher();
+        teacher.setId(teacherDto.getId());
+        teacher.setName(teacherDto.getName());
+        teacher.setPosition(teacherDto.getPosition());
+        return teacher;
+    }
+
     private TeacherDto mapToTeacherDto(Teacher teacher) {
         TeacherDto teacherDto = new TeacherDto();
         teacherDto.setId(teacher.getId());

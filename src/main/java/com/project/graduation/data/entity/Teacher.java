@@ -15,7 +15,7 @@ import lombok.*;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String name;
 
     @Enumerated(EnumType.STRING)

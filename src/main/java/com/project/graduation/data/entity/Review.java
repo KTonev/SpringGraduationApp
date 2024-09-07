@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -26,7 +26,7 @@ public class Review {
     @Lob
     private String content;
 
-    private Boolean isPositive;
+    private boolean isPositive;
 
     @OneToOne
     @JoinColumn(name = "thesis_id", nullable = false)

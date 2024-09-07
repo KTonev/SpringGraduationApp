@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Thesis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String title;
 
     @Lob

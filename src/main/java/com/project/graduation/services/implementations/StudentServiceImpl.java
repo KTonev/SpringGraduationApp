@@ -22,13 +22,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public StudentDto getStudentById(long id) {
+        return studentRepository.findById(id)
+                .map(this::mapToStudentDto)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + id));
+    }
+
+    @Override
     public void createStudent(StudentDto studentDto) {
         Student student = mapToStudent(studentDto);
         studentRepository.save(student);
     }
 
     @Override
-    public void editStudent(StudentDto studentDto, int id) {
+    public void editStudent(StudentDto studentDto, long id) {
         Student student = mapToStudent(studentDto);
         studentRepository.save(student);
     }

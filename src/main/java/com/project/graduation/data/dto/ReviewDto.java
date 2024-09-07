@@ -8,10 +8,10 @@ import java.time.LocalDate;
 
 @Data
 public class ReviewDto {
-    private Long id;
+    private long id;
     private LocalDate date;
     private String content;
-    private Boolean isPositive;
+    private boolean isPositive;
     private Thesis thesis;
     private Teacher reviewer;
 }

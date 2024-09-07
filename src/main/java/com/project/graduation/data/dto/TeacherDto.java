@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class TeacherDto {
-    private int id;
+    private long id;
     private String name;
 
     @Enumerated(EnumType.STRING)

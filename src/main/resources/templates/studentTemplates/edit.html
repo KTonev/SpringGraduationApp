@@ -30,10 +30,10 @@
         <strong>Faculty Number:</strong> <span th:text="${student.facultyNumber}"></span>
     </div>
     <div>
-        <a th:href="@{/submitThesis(studentId=${student.id}-1)}">Submit Thesis</a>
+        <a th:href="@{/submitThesis(studentId=${student.id})}">Submit Thesis</a>
     </div>
     <div class="edit-button">
-        <a th:href="@{/edit/{id}(id=${student.id}-1)}">Edit</a>
+        <a th:href="@{/edit/{id}(id=${student.id})}">Edit</a>
     </div>
 </div>
 </body>

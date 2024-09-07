@@ -5,5 +5,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ThesisService {
 
-    void saveThesis(ThesisDto thesisDto, int studentId, MultipartFile file);
+    void saveThesis(ThesisDto thesisDto, long studentId, MultipartFile file);
 }

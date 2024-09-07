@@ -13,7 +13,7 @@ import lombok.*;
 public class ThesisApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String topic;
     private String purpose;
@@ -28,5 +28,5 @@ public class ThesisApplication {
     @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher supervisor;
 
-    private Boolean isApproved;
+    private boolean isApproved;
 }
