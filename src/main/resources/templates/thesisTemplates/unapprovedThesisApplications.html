@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Unapproved Thesis Applications</title>
+  <style>
+    .application-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .application-info {
+        flex-grow: 1;
+    }
+    .approve-button {
+        margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1>Unapproved Thesis Applications</h1>
+
+<div th:each="unapprovedApplications : ${unapprovedApplications}" class="application-item">
+  <div class="application-info">
+    <strong>Topic:</strong> <span th:text="${unapprovedApplications.topic}"></span><br>
+    <strong>Purpose:</strong> <span th:text="${unapprovedApplications.purpose}"></span><br>
+    <strong>Tasks:</strong> <span th:text="${unapprovedApplications.tasks}"></span><br>
+    <strong>Technologies:</strong> <span th:text="${unapprovedApplications.technologies}"></span><br>
+    <strong>Student:</strong> <span th:text="${unapprovedApplications.student.name}"></span><br>
+    <strong>Supervisor:</strong> <span th:text="${unapprovedApplications.supervisor.name}"></span><br>
+  </div>
+  <div class="approve-button">
+    <form th:action="@{/approveThesisApplication}" method="post">
+      <input type="hidden" name="id" th:value="${unapprovedApplications.id}">
+      <button type="submit">Approve</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

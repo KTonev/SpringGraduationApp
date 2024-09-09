@@ -64,24 +64,4 @@ public class TeacherController {
         teacherService.createTeacher(teacherDto);
         return "redirect:/editTeacher/{id}?success";
     }
-
-    @GetMapping(value = "/submitThesisApplication")
-    public String submitThesisApplicationForm(@RequestParam("teacherId") long teacherId, Model model) {
-        TeacherDto teacher = teacherService.getTeacherById(teacherId);
-        List<StudentDto> students = studentService.getAllStudents();
-
-        model.addAttribute("teacher", teacher);
-        model.addAttribute("thesisApplication", new ThesisApplicationDto());
-        model.addAttribute("students", students);
-        return "teacherTemplates/submitThesisApplication";
-    }
-
-    @PostMapping("/submitThesisApplication")
-    public String submitThesisApplication(@RequestParam("teacherId") long teacherId,
-                                          @ModelAttribute("thesisApplication") ThesisApplicationDto thesisApplicationDto,
-                                          @RequestParam("studentId") long studentId) {
-
-        thesisApplicationService.saveThesisApplication(thesisApplicationDto, studentId, teacherId);
-        return "redirect:/menuTeacher?thesisApplicationSuccess";
-    }
 }

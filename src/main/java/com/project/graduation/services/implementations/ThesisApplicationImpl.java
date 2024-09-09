@@ -11,6 +11,9 @@ import com.project.graduation.services.ThesisApplicationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class ThesisApplicationImpl implements ThesisApplicationService {
@@ -35,5 +38,42 @@ public class ThesisApplicationImpl implements ThesisApplicationService {
         thesisApplication.setApproved(false);
 
         thesisApplicationRepository.save(thesisApplication);
+    }
+
+    @Override
+    public List<ThesisApplicationDto> getUnapprovedThesisApplications() {
+        List<ThesisApplication> unapprovedThesisApplications = thesisApplicationRepository. findByIsApprovedFalse();
+        return unapprovedThesisApplications.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ThesisApplicationDto> getApprovedThesisApplications() {
+        List<ThesisApplication> unapprovedThesisApplications = thesisApplicationRepository. findByIsApprovedTrue();
+        return unapprovedThesisApplications.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void approveThesisApplication(long id) {
+        ThesisApplication thesisApplication = thesisApplicationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Thesis Application not found"));
+        thesisApplication.setApproved(true);
+        thesisApplicationRepository.save(thesisApplication);
+    }
+
+    private ThesisApplicationDto convertToDto(ThesisApplication thesisApplication) {
+        ThesisApplicationDto thesisApplicationDto = new ThesisApplicationDto();
+        thesisApplicationDto.setId(thesisApplication.getId());
+        thesisApplicationDto.setTopic(thesisApplication.getTopic());
+        thesisApplicationDto.setPurpose(thesisApplication.getPurpose());
+        thesisApplicationDto.setTasks(thesisApplication.getTasks());
+        thesisApplicationDto.setTechnologies(thesisApplication.getTechnologies());
+        thesisApplicationDto.setStudent(thesisApplication.getStudent());
+        thesisApplicationDto.setSupervisor(thesisApplication.getSupervisor());
+        thesisApplicationDto.setApproved(thesisApplication.isApproved());
+        return thesisApplicationDto;
     }
 }

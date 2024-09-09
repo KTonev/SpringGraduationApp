@@ -33,28 +33,28 @@ public class StudentController {
     }
 
     //register student
-    @GetMapping(value = "/register")
+    @GetMapping(value = "/registerStudent")
     public String registrationForm(Model model) {
         model.addAttribute("student", new StudentDto());
-        return "studentTemplates/register";
+        return "studentTemplates/registerStudent";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registerStudent")
     public String registerStudent(@ModelAttribute("student") StudentDto studentDto) {
         studentService.createStudent(studentDto);
-        return "redirect:/register?success";
+        return "redirect:/registerStudent?success";
     }
 
     //list all students, edit and thesis submission menu
-    @GetMapping(value = "/edit")
+    @GetMapping(value = "/menuStudent")
     public String editForm(Model model) {
         List<StudentDto> students = studentService.getAllStudents();
         model.addAttribute("student", students);
-        return "studentTemplates/edit";
+        return "studentTemplates/menuStudent";
     }
 
     //edit student
-    @GetMapping(value = "/edit/{id}")
+    @GetMapping(value = "/editStudent/{id}")
     public String editForm(@PathVariable("id") long id, Model model) {
         List<StudentDto> students = studentService.getAllStudents();
         StudentDto student = studentService.getStudentById(id);
@@ -62,28 +62,9 @@ public class StudentController {
         return "studentTemplates/editStudent";
     }
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/editStudent/{id}")
     public String editStudent(@PathVariable("id") long id, @ModelAttribute("student") StudentDto studentDto) {
         studentService.editStudent(studentDto, id);
-        return "redirect:/edit?success";
+        return "redirect:/menuStudent?success";
     }
-
-    //submit thesis
-    @GetMapping("/submitThesis")
-    public String showThesisForm(@RequestParam("studentId") long studentId, Model model) {
-        StudentDto studentDto = studentService.getStudentById(studentId);
-        model.addAttribute("student", studentDto);
-        model.addAttribute("thesis", new ThesisDto());
-        System.out.println("Student ID: " + studentId);
-        return "studentTemplates/submitThesis";
-    }
-
-    @PostMapping("submitThesis")
-    public String submitThesis(@RequestParam("studentId") long studentId,
-                               @ModelAttribute("thesis") ThesisDto thesisDto,
-                               @RequestParam("file")MultipartFile file) {
-        thesisService.saveThesis(thesisDto, studentId, file);
-        return "redirect:/edit?thesisSuccess";
-    }
-
 }

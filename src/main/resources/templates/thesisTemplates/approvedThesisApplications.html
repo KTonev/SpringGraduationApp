@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Approved Thesis Applications</title>
+  <style>
+    .application-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .application-info {
+        flex-grow: 1;
+    }
+    .approve-button {
+        margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1>Approved Thesis Applications</h1>
+
+<div th:each="approvedApplications : ${approvedApplications}" class="application-item">
+  <div class="application-info">
+    <strong>Topic:</strong> <span th:text="${approvedApplications.topic}"></span><br>
+    <strong>Purpose:</strong> <span th:text="${approvedApplications.purpose}"></span><br>
+    <strong>Tasks:</strong> <span th:text="${approvedApplications.tasks}"></span><br>
+    <strong>Technologies:</strong> <span th:text="${approvedApplications.technologies}"></span><br>
+    <strong>Student:</strong> <span th:text="${approvedApplications.student.name}"></span><br>
+    <strong>Supervisor:</strong> <span th:text="${approvedApplications.supervisor.name}"></span><br>
+  </div>
+
+</div>
+</body>
+</html>

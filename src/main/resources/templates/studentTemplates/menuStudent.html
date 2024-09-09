@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Edit Students</title>
+    <title>Menu Students</title>
     <style>
         .student-item {
             display: flex;
@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-<h1>Edit Students</h1>
+<h1>Menu Students</h1>
 
 <div th:each="student : ${student}" class="student-item">
     <div class="student-info">
@@ -33,7 +33,7 @@
         <a th:href="@{/submitThesis(studentId=${student.id})}">Submit Thesis</a>
     </div>
     <div class="edit-button">
-        <a th:href="@{/edit/{id}(id=${student.id})}">Edit</a>
+        <a th:href="@{/editStudent/{id}(id=${student.id})}">Edit</a>
     </div>
 </div>
 </body>
