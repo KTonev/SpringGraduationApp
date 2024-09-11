@@ -29,6 +29,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public List<Teacher> getAllTeachersByIds(List<Long> teacherIds) {
+        return teacherRepository.findAllById(teacherIds);
+    }
+
+    @Override
     public void createTeacher(TeacherDto teacherDto) {
         Teacher teacher = mapToTeacher(teacherDto);
         teacherRepository.save(teacher);

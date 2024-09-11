@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>All Theses</title>
+  <style>
+    .thesis-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+<h1>All Theses</h1>
+
+<div th:each="theses : ${theses}" class="thesis-item">
+  <div>
+    <strong>Title:</strong> <span th:text="${theses.title}"></span><br>
+    <strong>Content:</strong> <span th:text="${theses.content}"></span><br>
+    <strong>Upload Date:</strong> <span th:text="${theses.uploadDate}"></span><br>
+    <strong>Student:</strong> <span th:text="${theses.student.name}"></span><br>
+  </div>
+  <div class="review-button">
+    <a th:href="@{/create(thesisId=${theses.id}, teacherId=${teacherId})}" class="button">Create Review</a>
+  </div>
+</div>
+</body>
+</html>

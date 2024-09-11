@@ -32,9 +32,15 @@
   <div class="submit-thesis-button">
     <a th:href="@{/submitThesisApplication(teacherId=${teacher.id})}">Submit Thesis Application</a>
   </div>
+  <div class="thesis-button">
+    <a th:href="@{/theses(teacherId=${teacher.id})}" class="button">View uploaded theses</a>
+  </div>
   <div class="edit-button">
     <a th:href="@{/editTeacher/{id}(id=${teacher.id})}">Edit</a>
   </div>
+</div>
+<div>
+  <a th:href="@{/defense/create}" class="button">Create Defense</a>
 </div>
 </body>
 </html>

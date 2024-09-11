@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Create Defense</title>
+</head>
+<body>
+<h1>Create Defense</h1>
+
+<form th:action="@{/defense/create}" method="post">
+  <label for="date">Defense Date:</label>
+  <input type="date" id="date" name="date" required><br>
+
+  <label for="student">Select Students:</label><br>
+  <div th:each="students : ${students}">
+    <input type="checkbox" th:value="${students.id}" th:name="'students'" id="student" />
+    <span th:text="${students.name}"></span><br>
+  </div>
+
+  <label for="teacher">Select Teachers:</label><br>
+  <div th:each="teachers : ${teachers}">
+    <input type="checkbox" th:value="${teachers.id}" th:name="'teachers'" id="teacher" />
+    <span th:text="${teachers.name}"></span><br>
+  </div>
+
+  <button type="submit">Create Defense</button>
+</form>
+
+</body>
+</html>

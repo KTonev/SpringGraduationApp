@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Thesis Reviews</title>
+</head>
+<body>
+<h1>Reviews for Thesis</h1>
+<div th:each="reviews : ${reviews}">
+  <div>
+    <strong>Reviewer:</strong> <span th:text="${reviews.reviewer.name}"></span><br>
+    <strong>Date:</strong> <span th:text="${reviews.uploadDate}"></span><br>
+    <strong>Review:</strong> <span th:text="${reviews.content}"></span><br>
+    <strong>Conclusion:</strong> <span th:text="${reviews.isPositive ? 'Positive' : 'Negative'}"></span><br>
+  </div>
+</div>
+</body>
+</html>

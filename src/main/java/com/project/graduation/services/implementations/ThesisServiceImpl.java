@@ -16,7 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -41,6 +43,22 @@ public class ThesisServiceImpl implements ThesisService {
         thesis.setFilePath(filePath);
 
         thesisRepository.save(thesis);
+    }
+
+    @Override
+    public List<ThesisDto> getAllTheses() {
+        List<Thesis> theses = thesisRepository.findAll();
+        return theses.stream().map((this::mapToThesisDto)).collect(Collectors.toList());
+    }
+
+    private ThesisDto mapToThesisDto(Thesis thesis) {
+        ThesisDto thesisDto = new ThesisDto();
+        thesisDto.setId(thesis.getId());
+        thesisDto.setTitle(thesis.getTitle());
+        thesisDto.setContent(thesis.getContent());
+        thesisDto.setUploadDate(thesis.getUploadDate());
+        thesisDto.setStudent(thesis.getStudent());
+        return thesisDto;
     }
 
     private String saveFile(MultipartFile file) {

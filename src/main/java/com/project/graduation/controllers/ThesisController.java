@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 public class ThesisController {
@@ -39,6 +41,15 @@ public class ThesisController {
                                @RequestParam("file") MultipartFile file) {
         thesisService.saveThesis(thesisDto, studentId, file);
         return "redirect:/menuStudent?thesisSuccess";
+    }
+
+    //get uploaded theses
+    @GetMapping("/theses")
+    public String getUploadedTheses(Model model, @RequestParam("teacherId") long teacherId) {
+        List<ThesisDto> theses = thesisService.getAllTheses();
+        model.addAttribute("theses", theses);
+        model.addAttribute("teacherId", teacherId);
+        return "thesisTemplates/thesisList";
     }
 
 }
