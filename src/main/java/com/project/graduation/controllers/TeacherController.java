@@ -64,4 +64,10 @@ public class TeacherController {
         teacherService.createTeacher(teacherDto);
         return "redirect:/editTeacher/{id}?success";
     }
+
+    @PostMapping("/deleteTeacher/{id}")
+    public String deleteTeacher(@PathVariable("id") long id) {
+        teacherService.deleteTeacherById(id);
+        return "redirect:/menuTeacher?success";
+    }
 }

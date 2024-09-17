@@ -60,8 +60,4 @@ public class ThesisServiceImpl implements ThesisService {
         thesisDto.setStudent(thesis.getStudent());
         return thesisDto;
     }
-
-    private String saveFile(MultipartFile file) {
-        return "C:/Projects/SaveData";
-    }
 }

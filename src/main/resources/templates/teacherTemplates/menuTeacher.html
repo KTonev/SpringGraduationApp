@@ -18,6 +18,9 @@
     .edit-button {
         margin-left: 20px;
     }
+    a {
+    padding-left: 15px;
+    }
   </style>
 </head>
 <body>
@@ -31,6 +34,9 @@
   </div>
   <div class="submit-thesis-button">
     <a th:href="@{/submitThesisApplication(teacherId=${teacher.id})}">Submit Thesis Application</a>
+  </div>
+  <div class="unapprovedApplications-button">
+    <a th:href="@{/unapprovedThesisApplications(teacherId=${teacher.id})}">Unapproved Applications</a>
   </div>
   <div class="thesis-button">
     <a th:href="@{/theses(teacherId=${teacher.id})}" class="button">View uploaded theses</a>

@@ -39,6 +39,11 @@ public class TeacherServiceImpl implements TeacherService {
         teacherRepository.save(teacher);
     }
 
+    @Override
+    public void deleteTeacherById(long id) {
+        teacherRepository.deleteById(id);
+    }
+
     private Teacher mapToTeacher(TeacherDto teacherDto) {
         Teacher teacher = new Teacher();
         teacher.setId(teacherDto.getId());
